@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Digital Twin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1><i class="fas fa-brain"></i> Digital Twin</h1>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <div class="user-pill"><span id="user-name">...</span></div>
+                <button onclick="logout()" class="delete-btn" style="padding: 5px 15px;">Logout</button>
+            </div>
+        </header>
+
+        <div class="stats-container">
+            <div class="card">
+                <h3><i class="fas fa-bolt"></i> Energy</h3>
+                <div class="big-text" id="energy">...</div>
+            </div>
+            <div class="card warning">
+                <h3><i class="fas fa-calendar-day"></i> Next Task</h3>
+                <div id="deadline-display" style="font-weight: bold;">...</div>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3><i class="fas fa-edit"></i> Subject Manager</h3>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <input type="text" id="new-subject-name" placeholder="New Subject Name" class="grade-input" style="flex: 2;">
+                <input type="number" id="new-subject-score" placeholder="Initial %" class="grade-input" style="flex: 1;">
+                <button onclick="addSubject()" class="add-btn">Add</button>
+            </div>
+            
+            <div id="subject-editor-list" style="margin-top: 15px; border-top: 1px solid #333; padding-top: 15px;">
+                </div>
+            <button onclick="saveGrades()" class="save-btn" style="width: 100%; margin-top: 10px;">Update All Grades</button>
+        </div>
+
+        <div class="card full-width">
+            <h3>🩺 Daily Health Log</h3>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <input type="number" id="sleep-input" placeholder="Sleep Hrs" class="grade-input">
+                <select id="mood-input" class="grade-input">
+                    <option value="10">😊 Great</option>
+                    <option value="7">😐 Okay</option>
+                    <option value="3">😫 Tired</option>
+                </select>
+                <button onclick="addHealthLog()" class="add-btn">Log</button>
+            </div>
+        </div>
+
+        <div class="card full-width" style="border: 1px solid #6c5ce7;">
+            <h3>📖 Active Study</h3>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <select id="study-subject" class="grade-input" style="flex: 1;"></select>
+                <button onclick="startStudySession()" class="save-btn" style="width: auto; padding: 0 20px;">Boost Skill (+2%)</button>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3>✅ Tasks <span id="task-count" class="badge">0</span></h3>
+            <div id="task-list" class="task-list"></div>
+            <div class="add-task-row" style="margin-top: 15px;">
+                <input type="text" id="new-task-text" placeholder="New Task" class="grade-input" style="flex: 1;">
+                <input type="date" id="new-task-date" class="grade-input">
+                <button onclick="addTask()" class="add-btn"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3>📊 Academic Summary</h3>
+            <ul id="subject-list" style="list-style: none; padding: 0;"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

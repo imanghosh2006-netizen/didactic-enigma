@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Digital Twin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #0f0c29; margin: 0;">
+    <div class="card" style="width: 350px; text-align: center; padding: 40px;">
+        <h2 style="color: white; margin-bottom: 20px;"><i class="fas fa-sync"></i> Twin Access</h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <input type="text" id="name" placeholder="Full Name (for new users)" class="grade-input">
+            <input type="text" id="user" placeholder="Username" class="grade-input">
+            <input type="password" id="pin" placeholder="4-Digit PIN" maxlength="4" 
+                   class="grade-input" style="text-align: center; letter-spacing: 5px;">
+        </div>
+
+        <button onclick="login()" class="save-btn" style="width: 100%; margin-top: 20px; height: 45px;">
+            Sync My Twin
+        </button>
+        
+        <p style="color: #a29bfe; font-size: 0.8rem; margin-top: 15px;">
+            Enter your details to create or resume your Twin.
+        </p>
+    </div>
+
+    <script>
+        // Allow pressing "Enter" to login
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') login();
+        });
+
+        async function login() {
+            const nameEl = document.getElementById('name');
+            const userEl = document.getElementById('user');
+            const pinEl = document.getElementById('pin');
+
+            const payload = {
+                name: nameEl.value.trim(),
+                user: userEl.value.trim().toLowerCase(), // Lowercase for consistency
+                pin: pinEl.value
+            };
+
+            if(!payload.user || payload.pin.length !== 4) {
+                return alert("Please enter your username and a 4-digit PIN.");
+            }
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    localStorage.setItem('twin_user', payload.user);
+                    window.location.href = 'index.html';
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                alert("Server connection failed. Is your server.js running?");
+            }
+        }
+    </script>
+</body>
+</html>

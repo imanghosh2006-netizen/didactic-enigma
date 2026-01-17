@@ -1,0 +1,125 @@
+:root { 
+    --bg: #0f0c29; 
+    --card: #1b1b3a; 
+    --accent: #6c5ce7; 
+    --warning: #ff9f43;
+    --danger: #ff5555;
+    --text-dim: #a29bfe;
+}
+
+body { 
+    background: var(--bg); 
+    color: white; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    margin: 0; 
+    padding: 20px; 
+    line-height: 1.6;
+}
+
+.dashboard { max-width: 800px; margin: auto; }
+
+header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 30px; 
+}
+
+/* Cards & Layout */
+.card { 
+    background: var(--card); 
+    padding: 20px; 
+    border-radius: 15px; 
+    margin-bottom: 20px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    transition: transform 0.2s ease;
+}
+
+.full-width { width: 100%; box-sizing: border-box; }
+
+.stats-container { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+}
+
+/* Typography */
+.big-text { font-size: 2.5rem; font-weight: bold; color: var(--accent); }
+h3 { margin-top: 0; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; }
+
+/* Inputs & Buttons */
+.grade-input { 
+    background: #2d2d5a; 
+    border: 1px solid #3d3d7a; 
+    color: white; 
+    padding: 10px; 
+    border-radius: 8px; 
+    outline: none;
+}
+
+.grade-input:focus { border-color: var(--accent); }
+
+.add-btn, .save-btn { 
+    background: var(--accent); 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+.add-btn:hover, .save-btn:hover { opacity: 0.8; }
+
+.delete-btn {
+    background: var(--danger);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Task & Subject Rows */
+.task-item, .subject-edit-row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    background: #25254d; 
+    padding: 12px; 
+    margin: 8px 0; 
+    border-radius: 8px; 
+}
+
+.task-delete { 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    color: #888;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.task-delete:hover { color: var(--danger); }
+
+/* User UI */
+.user-pill { 
+    background: var(--accent); 
+    padding: 8px 20px; 
+    border-radius: 25px; 
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.badge {
+    background: var(--accent);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+/* Specific logic for mobile responsiveness */
+@media (max-width: 600px) {
+    .stats-container { grid-template-columns: 1fr; }
+}
