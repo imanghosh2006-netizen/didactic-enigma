@@ -113,10 +113,13 @@ app.post('/api/update-user', (req, res) => {
     res.json({ success: true });
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`-------------------------------------------`);
-    console.log(`Digital Twin Server Live: http://localhost:${PORT}/login.html`);
-    console.log(`Database File: ${DATA_FILE}`);
-    console.log(`-------------------------------------------`);
+// This tells the server: "Use the host's assigned port, or 3000 if I'm on my laptop"
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`-----------------------------------------`);
+    console.log(`✅ Digital Twin Server is Live!`);
+    console.log(`🚀 Access it at: http://localhost:${PORT}`);
+    console.log(`🌍 Hosting Port: ${PORT}`);
+    console.log(`-----------------------------------------`);
 });
