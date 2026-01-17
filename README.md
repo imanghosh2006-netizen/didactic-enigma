@@ -15,4 +15,3 @@ A personalized dashboard to track academic progress, energy levels, and tasks.
 ## 📦 Installation
 1. `npm install`
 2. `node server.js`
-3. 
